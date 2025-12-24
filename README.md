@@ -53,17 +53,22 @@ By default, the `data/` directory is ignored by Git to keep the repository light
 
 ### Running via Docker (Recommended)
 
-**1. Prepare Documentation (Offline Database):**
+**1. Build Information (First Time or after dependency changes):**
+```bash
+docker compose build
+```
+
+**2. Prepare Documentation (Offline Database):**
 ```bash
 docker compose run --rm ingest
 ```
 
-**2. Ask a Question (Offline):**
+**3. Ask a Question (Offline):**
 ```bash
 docker compose run --rm agent "How do I add persistence?"
 ```
 
-**3. Ask a Question (Online):**
+**4. Ask a Question (Online):**
 ```bash
 docker compose run --rm agent "What are the latest LangGraph features?" --mode online
 ```
