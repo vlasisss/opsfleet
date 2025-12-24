@@ -1,0 +1,12 @@
+langchain
+langchain-community
+langchain-google-genai
+langchain-chroma
+langchain-tavily
+langgraph
+python-dotenv
+requests
+beautifulsoup4
+markdownify
+pytest
+pytest-mock

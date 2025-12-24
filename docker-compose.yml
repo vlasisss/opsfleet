@@ -1,0 +1,18 @@
+services:
+  agent:
+    build: .
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./src:/app/src
+      - ./main.py:/app/main.py
+    environment:
+      - AGENT_MODE=${AGENT_MODE:-offline}
+
+  ingest:
+    build: .
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./src:/app/src
+    entrypoint: ["python", "src/utils/ingest.py"]
