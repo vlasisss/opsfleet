@@ -1,7 +1,10 @@
 import logging
+import os
+import sqlite3
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import StateGraph, END
+from langgraph.checkpoint.sqlite import SqliteSaver
 
 from src.config import CHAT_MODEL
 from src.agent.state import AgentState
@@ -57,6 +60,9 @@ def create_graph():
     workflow.add_edge("research", "generate")
     workflow.add_edge("generate", END)
     
-    # Add memory for persistence support
-    memory = MemorySaver()
+    # Add SQLite-based persistence for conversation history
+    db_path = os.path.join("data", "checkpoints.sqlite")
+    os.makedirs("data", exist_ok=True)
+    conn = sqlite3.connect(db_path, check_same_thread=False)
+    memory = SqliteSaver(conn)
     return workflow.compile(checkpointer=memory)

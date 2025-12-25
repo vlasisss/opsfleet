@@ -10,7 +10,7 @@ The agent is built using **LangGraph V1** with a simple research-and-generate or
 - **Nodes**:
   - `research`: Determines the mode and fetches context using `offline_retriever` (ChromaDB) or `online_search` (Tavily).
   - `generate`: Uses **Gemini 3 Flash** to synthesize an answer from the retrieved context.
-- **Persistence**: Employs `MemorySaver` as a checkpointer to support stateful interactions.
+- **Persistence**: Employs `SqliteSaver` as a checkpointer to support stateful interactions across container runs. Conversation history is stored in `data/checkpoints.sqlite`.
 
 ## Data Portability
 

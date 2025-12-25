@@ -17,6 +17,7 @@ RUN mkdir -p data
 # Set environment variables (can be overridden)
 ENV AGENT_MODE=offline
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
 
 # Default command
 ENTRYPOINT ["python", "main.py"]
